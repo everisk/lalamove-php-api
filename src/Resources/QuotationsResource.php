@@ -15,6 +15,7 @@ class QuotationsResource extends AbstractResource
      */
     public function create(Quotation $quotation)
     {
+		if(is_null($quotation->scheduleAt)) unset($quotation->scheduleAt);
         $response = $this->send('POST', 'quotations', $quotation);
         return new QuotationResponse($response);
     }
